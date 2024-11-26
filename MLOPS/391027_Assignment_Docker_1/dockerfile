@@ -1,0 +1,17 @@
+# Use a lightweight base image with Python installed
+FROM python:3.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements.txt file to the container
+COPY requirements.txt .
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Titanic EDA script and dataset into the container
+COPY titanic_eda.py Titanic-Dataset.csv ./
+
+# Command to run the Python script
+CMD ["python", "titanic_eda.py"]
